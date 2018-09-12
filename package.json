@@ -1,18 +1,19 @@
 {
-  "name": "genretor",
+  "name": "generator",
   "version": "1.0.0",
-  "description": "",
+  "description": "Express application generator",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "kamalnrf",
+  "license": "MIT",
   "dependencies": {
     "inquirer": "^6.2.0"
   },
   "bin": {
     "generate": "./index.js"
- }
+ },
+ "repository": "Kamalnrf/express-generator"
 }
