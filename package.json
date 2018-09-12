@@ -1,5 +1,5 @@
 {
-  "name": "generator",
+  "name": "@kamalnrf/generator",
   "version": "1.0.0",
   "description": "Express application generator",
   "main": "index.js",
