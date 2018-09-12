@@ -1,7 +1,7 @@
 ## Installation
 
 ```sh
-$ npm install -g express-generator
+$ npm install -g @kamalnrf/generator
 ```
 
 ## Quick Start
