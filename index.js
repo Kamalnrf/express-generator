@@ -3,9 +3,16 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-const CHOICES = fs.readdirSync(`${__dirname}/templates`);
-
 const QUESTIONS = [
+  {
+    name: "which-directory",
+    type: "input",
+    message: "Do you want new directory (Yes/No):",
+    validate: function(input) {
+      if (/^(?:Yes|No)$/.test(input) || /^(?:yes|no)$/.test(input)) return true;
+      else return "Enter either Yes or No";
+    }
+  },
   {
     name: "project-name",
     type: "input",
@@ -21,12 +28,17 @@ const QUESTIONS = [
 const CURR_DIR = process.cwd();
 
 inquirer.prompt(QUESTIONS).then(answers => {
+  const currentDirectory = answers["which-directory"];
   const projectName = answers["project-name"];
   const templatePath = `${__dirname}/templates/`;
+  let projectPath = "";
+  if (/^(?:No|no)$/.test(currentDirectory)) projectPath = CURR_DIR;
+  else {
+    projectPath = `${CURR_DIR}/${projectName}`;
+    fs.mkdirSync(projectPath);
+  }
 
-  fs.mkdirSync(`${CURR_DIR}/${projectName}`);
-
-  createDirectoryContents(templatePath, projectName);
+  projectPath !== '' ? createDirectoryContents(templatePath, projectPath) : null
 });
 
 function createDirectoryContents(templatePath, newProjectPath) {
@@ -41,12 +53,12 @@ function createDirectoryContents(templatePath, newProjectPath) {
     if (stats.isFile()) {
       const contents = fs.readFileSync(origFilePath, "utf8");
 
-      if (file === '.npmignore') file = '.gitignore';
+      if (file === ".npmignore") file = ".gitignore";
 
-      const writePath = `${CURR_DIR}/${newProjectPath}/${file}`;
+      const writePath = `${newProjectPath}/${file}`;
       fs.writeFileSync(writePath, contents, "utf8");
     } else if (stats.isDirectory()) {
-      fs.mkdirSync(`${CURR_DIR}/${newProjectPath}/${file}`);
+      fs.mkdirSync(`${newProjectPath}/${file}`);
 
       // recursive call
       createDirectoryContents(

@@ -14,7 +14,8 @@
     "restful",
     "router",
     "app",
-    "api"],
+    "api"
+  ],
   "author": "kamalnrf",
   "license": "MIT",
   "dependencies": {
@@ -22,6 +23,6 @@
   },
   "bin": {
     "generate": "./index.js"
- },
- "repository": "Kamalnrf/express-generator"
+  },
+  "repository": "Kamalnrf/express-generator"
 }
