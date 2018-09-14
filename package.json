@@ -22,7 +22,7 @@
     "inquirer": "~6.2.0"
   },
   "bin": {
-    "generate": "./index.js"
+    "generate-express": "./index.js"
   },
   "repository": "Kamalnrf/express-generator"
 }
