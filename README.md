@@ -12,6 +12,7 @@ Create the app:
 
 ```bash
 $ generate
+? Do you want new direcotry (Yes/No): yes
 ? Project name: _enter_your_project_name
 ```
 
